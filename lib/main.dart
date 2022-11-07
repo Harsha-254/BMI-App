@@ -50,19 +50,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      backgroundColor: Colors.lightBlueAccent,
+      backgroundColor: Colors.lightBlue,
       appBar: AppBar(
-        title: Text("BMI Calculator"),
+        title: Text("BMI Calculator",style: TextStyle(
+          fontSize: 30, fontWeight:FontWeight.bold
+        ),),
         centerTitle: true,
+        foregroundColor: Colors.red,
+        backgroundColor: Colors.yellow,
       ),
       body:
       Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children:[
         Container(
-          height:300,
-          width:200,
-          color:Colors.yellow,
+          height:600,
+          width:250,
+          color:Colors.orange,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -76,6 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   var x=height*height;
                 });
               },min: 60,max: 230,
+                activeColor: Colors.deepOrangeAccent,
+                inactiveColor: Colors.white,
+                thumbColor: Colors.black,
               ),
               Text(height.toString(),style:TextStyle(
                 fontStyle: FontStyle.italic,
@@ -86,9 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ),
         Container(
-          height:300,
-          width:200,
-          color:Colors.green,
+          height:600,
+          width:250,
+          color:Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -99,19 +106,27 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children:[
                 SizedBox(
-                  height:40 ,
-                  width:40 ,
+                  height:45 ,
+                  width:45 ,
                   child: ElevatedButton(
                     onPressed: _incrementCounter,
-                    child: Text("+"),
+                    child: Text("+",style: TextStyle(fontSize: 26),),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.blueAccent),
+                        foregroundColor: MaterialStatePropertyAll(Colors.white)
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height:40 ,
-                  width:40 ,
+                  height:45 ,
+                  width:45,
                   child: ElevatedButton(
                     onPressed: _decrementCounter,
-                    child: Text('-'),
+                    child: Text('-',style: TextStyle(fontSize: 26),),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.blueAccent),
+                        foregroundColor: MaterialStatePropertyAll(Colors.white)
+                    ),
                   ),
                 )
               ]),
@@ -125,15 +140,18 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         Container(
-          height: 300,
-          width: 200,
-          color:Colors.red,
+          height: 600,
+          width: 250,
+          color:Colors.green,
           child: Column(
             mainAxisAlignment:MainAxisAlignment.center,
             children: [
               ElevatedButton(onPressed:calculateBMI, child: Text('Calculate BMI',style:TextStyle(
-                fontSize: 24,fontStyle: FontStyle.italic
-              ))
+                fontSize: 24,fontStyle: FontStyle.italic),
+              ),style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.white),
+                  foregroundColor: MaterialStatePropertyAll(Colors.lightGreen)
+              ),
               ),
               Text('BMI:'+BMI.toString(),style: TextStyle(
                 fontStyle: FontStyle.italic,
