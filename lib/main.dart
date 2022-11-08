@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:bmi_app/secondPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage()
+      home: MyHomePage(),
+
     );
   }
 }
@@ -26,6 +28,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _counter=60;
   var BMI=(((60/(1.7*1.7))*100).roundToDouble())/100;
+  var bmi;
   void _incrementCounter(){
     setState(() {
       _counter++;
@@ -43,6 +46,10 @@ class _MyHomePageState extends State<MyHomePage> {
       BMI=BMI.roundToDouble();
       BMI=BMI/100;
     });
+  }
+  void gotopage(){
+    calculateBMI();
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>secondPage(BMI:BMI)));
   }
 
   @override
@@ -65,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
       children:[
         Container(
           height:600,
-          width:250,
+          width:200,
           color:Colors.orange,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         Container(
           height:600,
-          width:250,
+          width:200,
           color:Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -141,22 +148,23 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         Container(
           height: 600,
-          width: 250,
+          width: 200,
           color:Colors.green,
           child: Column(
             mainAxisAlignment:MainAxisAlignment.center,
             children: [
-              ElevatedButton(onPressed:calculateBMI, child: Text('Calculate BMI',style:TextStyle(
-                fontSize: 24,fontStyle: FontStyle.italic),
-              ),style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.white),
-                  foregroundColor: MaterialStatePropertyAll(Colors.lightGreen)
-              ),
-              ),
-              Text('BMI:'+BMI.toString(),style: TextStyle(
-                fontStyle: FontStyle.italic,
-                fontSize: 30
-              ))
+
+              ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStatePropertyAll(Colors.lightGreen),
+                  backgroundColor: MaterialStatePropertyAll(Colors.white)
+                ),
+                onPressed:gotopage ,
+                child: Text("See Results",style:TextStyle(
+                  fontStyle: FontStyle.italic,fontSize: 28
+                )),
+              )
+
             ],
           ),
         )
